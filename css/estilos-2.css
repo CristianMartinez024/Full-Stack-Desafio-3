@@ -1,0 +1,90 @@
+body {
+  margin: 0 auto;
+  background: radial-gradient(#1b2735, #090a0f);
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+.gallery-container {
+    text-align: center;
+    display: flex;
+}
+
+.gallery-title{
+    background-color: #000;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
+
+}
+
+.main-image-container {
+    width: 100%;
+    /* Evita usar una altura fija: usa aspect-ratio para que el contenedor mantenga proporción
+       y la imagen pueda escalar cuando cambie el ancho del contenedor. */
+    aspect-ratio: 16/9; /* puedes cambiar a 4/3, 1/1, etc. */
+    max-height: 70vh; /* evita que la imagen ocupe más que la ventana en pantallas pequeñas */
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* recorta contenido si usamos object-fit: cover */
+    margin-bottom: 25px;
+}
+
+/* Regla común para las imágenes principales. Las dos IDs usan la misma lógica. */
+#main-image,
+#main-image2 {
+    width: 100%;
+    height: 100%;
+    display: block; /* elimina espacios blancos inesperados en algunos navegadores */
+    object-fit: contain; /* 'contain' muestra la imagen completa sin recortar
+                             'cover' la llena por completo recortando si hace falta */
+}
+
+
+.thumbnail-row {
+   /* row de miniaturas. Si la pantalla es muy angosta, permite scroll horizontal */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 6px;
+    overflow-x: auto; /* habilita scroll en pantallas pequeñas */
+}
+
+.thumbnail-row img {
+    /* miniaturas responsivas: crecen/encogen según el ancho del viewport dentro de límites */
+    width: clamp(48px, 8vw, 100px);
+    height: clamp(48px, 8vw, 100px);
+    flex: 0 0 auto; /* no se reduzcan por debajo del clamp */
+    object-fit: cover; /* Las miniaturas cubren su espacio, pueden recortarse ligeramente */
+    cursor: pointer; /* Cambia el cursor para indicar que son clicables */
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, transform 0.15s;
+}
+
+.thumbnail-row img:active,
+.thumbnail-row img:focus,
+.thumbnail-row img.selected {
+    transform: scale(0.98);
+}
+
+.thumbnail-row img:hover {
+    border-color: #000; /* Efecto hover en las miniaturas */
+}
+
+.container-image{
+    width: 40%;
+}
+
+.description-container{
+    width: 40%;
+    padding: 32px;
+}
+
+.description-game{
+    color: white;
+}
